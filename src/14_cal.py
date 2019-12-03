@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 """
 The Python standard library's 'calendar' module allows you to
 render a calendar to your terminal.
@@ -22,3 +23,23 @@ and does the following:
 import sys
 import calendar
 from datetime import datetime
+
+today = datetime.today()
+
+if len(sys.argv) == 1:
+    year = today.year
+    month = today.month
+elif len(sys.argv) == 2:
+    year = today.year
+    month = int(sys.argv[1])
+elif len(sys.argv) == 3:
+    year = int(sys.argv[2])
+    month = int(sys.argv[1])
+else:
+    print('Wrong input.')
+    print('Expected a month, a month followed by a year, or nothing.')
+    quit()
+
+cal = calendar.TextCalendar()
+
+print(cal.formatmonth(year, month))
